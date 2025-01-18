@@ -1,0 +1,74 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.json"
+      }
+    }
+  },
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "plugins": ["react", "@typescript-eslint", "react-hooks", "import"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "rules": {
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "import/no-restricted-paths": [
+      "error",
+      {
+        "zones": [
+          {
+            "from": "./src/auto-generate/schemas",
+            "target": "./src/!(types)/**/*",
+            "message": "自動生成のschemaファイルはtypesディレクトリ配下のファイルでimportして使用してください"
+          },
+          {
+            "from": "./src/auto-generate/api",
+            "target": "./src/!(api)/**/*",
+            "message": "自動生成のapiエンドポイントファイルはapiディレクトリ配下のファイルでimportして使用してください"
+          }
+        ]
+      }
+    ]
+  },
+  "ignorePatterns": [
+    "vite.config.ts",
+    "setLocalIp.js",
+    "orval.config.js",
+    "/src/auto-generate/*"
+  ]
+}
