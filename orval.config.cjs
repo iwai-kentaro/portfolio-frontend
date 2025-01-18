@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 module.exports = {
-  saposhifu: {
+  portfolio: {
     input: {
       target: process.env.SWAGGER_PATH,
       filters: {
